@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sujith - Freelancer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#FAD768] text-black dark:bg-black dark:text-gray-300 font-['Poppins',_sans-serif] overflow-x-hidden transition-colors duration-300">
+    <div class="flex">
+        <nav class="fixed top-0 right-0 h-full w-48 bg-[#FAD768] dark:bg-black z-50 hidden lg:flex flex-col justify-center items-start border-l border-gray-600/20 dark:border-gray-100/20 transition-colors duration-300">
+            <ul class="space-y-4 pl-8">
+                <li><a href="#top" data-section="top" class="nav-link active font-semibold text-sm tracking-widest transition-all duration-300">TOP</a></li>
+                <li><a href="#about" data-section="about" class="nav-link font-semibold text-sm tracking-widest transition-all duration-300">ABOUT ME</a></li>
+                <li><a href="#services" data-section="services" class="nav-link font-semibold text-sm tracking-widest transition-all duration-300">MY SERVICES</a></li>
+                <li><a href="#skills" data-section="skills" class="nav-link font-semibold text-sm tracking-widest transition-all duration-300">SKILLS</a></li>
+                <li><a href="#projects" data-section="projects" class="nav-link font-semibold text-sm tracking-widest transition-all duration-300">PROJECTS</a></li>
+                <li><a href="#contact" data-section="contact" class="nav-link font-semibold text-sm tracking-widest transition-all duration-300">CONTACT</a></li>
+            </ul>
+            <div class="absolute bottom-6 left-1/2 -translate-x-1/2">
+                <button id="theme-toggle" type="button" class="text-black dark:text-gray-300 hover:bg-gray-500/20 dark:hover:bg-gray-100/20 rounded-lg text-sm p-2.5 transition-colors duration-300">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zM6.464 16.364l.707-.707a1 1 0 011.414 1.414l-.707.707a1 1 0 01-1.414-1.414zM16.364 6.464a1 1 0 01-1.414 0l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 1.414z"></path></svg>
+                </button>
+            </div>
+        </nav>
+
+        <main class="w-full lg:w-[calc(100%-12rem)]">
+            <section id="top" class="page-section h-screen min-h-[700px] flex items-center p-8 lg:p-16">
+                <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-12">
+                    <div class="text-left">
+                        <h1 class="text-4xl md:text-6xl font-bold uppercase leading-tight dark:text-white">
+                            Hi, I am 
+                            <span class="typing-text-container">
+                                <span id="typing-text"></span><span class="cursor"> </span>
+                            </span>
+                        </h1>
+                        <p class="mt-4 text-xl font-semibold dark:text-gray-400">based in Gothenburg, Sweden.</p>
+                        <div class="mt-8 flex gap-4">
+                            <a href="#projects" class="px-8 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-800 transition-colors duration-300 dark:bg-white dark:text-black dark:hover:bg-gray-200">View My Work</a>
+                            <a href="#contact" class="px-8 py-3 border-2 border-black text-black font-semibold rounded-full hover:bg-black hover:text-white transition-colors duration-300 dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black">Contact Me</a>
+                        </div>
+                    </div>
+                    <div class="flex justify-center items-center relative">
+                        <div class="image-rings">
+                            <img src="https://portify.softivuslab.com/_next/static/media/hero.a0b9b80f.png" alt="A stylized portrait of a freelancer" class="rounded-full w-72 h-72 md:w-96 md:h-96 object-cover z-10 relative border-4 border-[#FAD768] dark:border-black transition-colors duration-300">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="about" class="page-section h-screen bg-[#fffbeb] dark:bg-gray-900 p-8 flex items-center justify-center transition-colors duration-300">
+                <h2 class="text-4xl font-bold dark:text-white">02 ABOUT ME</h2>
+            </section>
+            <section id="services" class="page-section h-screen bg-[#FAD768] dark:bg-black p-8 flex items-center justify-center transition-colors duration-300">
+                <h2 class="text-4xl font-bold dark:text-white">03 MY SERVICES</h2>
+            </section>
+            <section id="skills" class="page-section h-screen bg-[#fffbeb] dark:bg-gray-900 p-8 flex items-center justify-center transition-colors duration-300">
+                <h2 class="text-4xl font-bold dark:text-white">04 SKILLS</h2>
+            </section>
+            <section id="projects" class="page-section h-screen bg-[#FAD768] dark:bg-black p-8 flex items-center justify-center transition-colors duration-300">
+                <h2 class="text-4xl font-bold dark:text-white">07 PROJECTS</h2>
+            </section>
+            <section id="contact" class="page-section h-screen bg-[#fffbeb] dark:bg-gray-900 p-8 flex items-center justify-center transition-colors duration-300">
+                <h2 class="text-4xl font-bold dark:text-white">11 CONTACT</h2>
+            </section>
+            <footer class="bg-[#FAD768] dark:bg-black p-6 border-t border-gray-600/20 dark:border-gray-100/20 transition-colors duration-300">
+                <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-sm text-gray-800 dark:text-gray-400">
+                        © 2025 <span class="font-bold">Sujith</span>. All Rights Reserved.
+                    </p>
+                    <div class="flex items-center gap-6">
+                        <a href="https://www.linkedin.com/in/sujith-mu" target="_blank" aria-label="LinkedIn" class="text-black dark:text-white hover:opacity-75 transition-opacity duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                        <a href="https://github.com/sujithmu?tab=repositories" target="_blank" aria-label="GitHub" class="text-black dark:text-white hover:opacity-75 transition-opacity duration-300">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <a href="#top" id="scrollToTopBtn" class="fixed bottom-6 right-6 z-50 bg-black text-white w-12 h-12 rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200" aria-label="Scroll to top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </a>
+    
+    <script src="style.js"></script>
+</body>
+</html>
