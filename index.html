@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sujith - Freelancer Portfolio</title>
+    <title>Sujith Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,6 @@
             <ul class="space-y-4 pl-8">
                 <li><a href="#top" data-section="top" class="nav-link active font-semibold text-sm tracking-widest transition-all duration-300">TOP</a></li>
                 <li><a href="#about" data-section="about" class="nav-link font-semibold text-sm tracking-widest transition-all duration-300">ABOUT ME</a></li>
-                <li><a href="#services" data-section="services" class="nav-link font-semibold text-sm tracking-widest transition-all duration-300">MY SERVICES</a></li>
                 <li><a href="#skills" data-section="skills" class="nav-link font-semibold text-sm tracking-widest transition-all duration-300">SKILLS</a></li>
                 <li><a href="#projects" data-section="projects" class="nav-link font-semibold text-sm tracking-widest transition-all duration-300">PROJECTS</a></li>
                 <li><a href="#contact" data-section="contact" class="nav-link font-semibold text-sm tracking-widest transition-all duration-300">CONTACT</a></li>
@@ -39,7 +38,7 @@
                                 <span id="typing-text"></span><span class="cursor"> </span>
                             </span>
                         </h1>
-                        <p class="mt-4 text-xl font-semibold dark:text-gray-400">based in Gothenburg, Sweden.</p>
+                        <p class="mt-4 text-xl font-semibold dark:text-gray-400">a fullstack developer based in Gothenburg, Sweden.</p>
                         <div class="mt-8 flex gap-4">
                             <a href="#projects" class="px-8 py-3 bg-black text-white font-semibold rounded-full hover:bg-gray-800 transition-colors duration-300 dark:bg-white dark:text-black dark:hover:bg-gray-200">View My Work</a>
                             <a href="#contact" class="px-8 py-3 border-2 border-black text-black font-semibold rounded-full hover:bg-black hover:text-white transition-colors duration-300 dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black">Contact Me</a>
@@ -47,25 +46,52 @@
                     </div>
                     <div class="flex justify-center items-center relative">
                         <div class="image-rings">
-                            <img src="https://portify.softivuslab.com/_next/static/media/hero.a0b9b80f.png" alt="A stylized portrait of a freelancer" class="rounded-full w-72 h-72 md:w-96 md:h-96 object-cover z-10 relative border-4 border-[#FAD768] dark:border-black transition-colors duration-300">
+                            <img src="images/profile-img.jpg" alt="A stylized portrait of a freelancer" class="rounded-full w-72 h-72 md:w-96 md:h-96 object-cover z-10 relative border-4 border-[#FAD768] dark:border-black transition-colors duration-300">
                         </div>
                     </div>
                 </div>
             </section>
-            <section id="about" class="page-section h-screen bg-[#fffbeb] dark:bg-gray-900 p-8 flex items-center justify-center transition-colors duration-300">
-                <h2 class="text-4xl font-bold dark:text-white">02 ABOUT ME</h2>
-            </section>
-            <section id="services" class="page-section h-screen bg-[#FAD768] dark:bg-black p-8 flex items-center justify-center transition-colors duration-300">
-                <h2 class="text-4xl font-bold dark:text-white">03 MY SERVICES</h2>
+            <section id="about"
+                class="page-section min-h-screen bg-[#fffbeb] dark:bg-gray-900 p-8 lg:p-16 flex items-center justify-center transition-colors duration-300">
+                <div class="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
+                    <div class="lg:col-span-1 text-left">
+                        <h2 class="text-4xl md:text-5xl font-bold dark:text-white uppercase">
+                            ABOUT ME
+                        </h2>
+                    </div>
+                    <div class="lg:col-span-2 text-left space-y-8 text-gray-800 dark:text-gray-400 leading-relaxed">
+                        <p>
+                            I am a Software Engineer having more seven years of experience in web development, IT Infrastructure,
+                            business analysis, and customer support in various industries such as Health & Hygiene,
+                            Telecommunications, Hospitality, Life sciences, and Automotive. I am also a Scrum Certified professional
+                            who enjoys working in agile teams and collaborating with customers, product managers, software
+                            developers, and stakeholders.
+                        </p>
+                        <p>
+                            My core competencies include developing robust and scalable web applications using React JS, Next JS,
+                            Angular, Ext JS, HTML, CSS, and JavaScript, as well as backend programming using Java and MS SQL server.
+                            I have a strong knowledge of data analysis, testing, debugging, code review, and documentation. I am
+                            passionate about learning new technologies and tools, and creating solutions that meet business
+                            requirements and user needs.
+                        </p>
+                        <p>
+                            I'm currently pursuing System Developer Python education/training from Lexicon IT Proffs. I'm also
+                            working with a startup 'People Pulse Analytix' based in Berlin, where I work as fullstack AI/ML
+                            engineer. We are developing an AI powered workforce management tool focusing on ‘ESG for People’,
+                            integrating sustainability and ethical leadership with workforce optimisation.
+                        </p>
+                    </div>
+            
+                </div>
             </section>
             <section id="skills" class="page-section h-screen bg-[#fffbeb] dark:bg-gray-900 p-8 flex items-center justify-center transition-colors duration-300">
-                <h2 class="text-4xl font-bold dark:text-white">04 SKILLS</h2>
+                <h2 class="text-4xl font-bold dark:text-white">SKILLS</h2>
             </section>
             <section id="projects" class="page-section h-screen bg-[#FAD768] dark:bg-black p-8 flex items-center justify-center transition-colors duration-300">
-                <h2 class="text-4xl font-bold dark:text-white">07 PROJECTS</h2>
+                <h2 class="text-4xl font-bold dark:text-white">PROJECTS</h2>
             </section>
             <section id="contact" class="page-section h-screen bg-[#fffbeb] dark:bg-gray-900 p-8 flex items-center justify-center transition-colors duration-300">
-                <h2 class="text-4xl font-bold dark:text-white">11 CONTACT</h2>
+                <h2 class="text-4xl font-bold dark:text-white">CONTACT</h2>
             </section>
             <footer class="bg-[#FAD768] dark:bg-black p-6 border-t border-gray-600/20 dark:border-gray-100/20 transition-colors duration-300">
                 <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
