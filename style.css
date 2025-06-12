@@ -210,3 +210,21 @@
 }
 .submit-rings::before { width: 120%; height: 120%; }
 .submit-rings::after { width: 140%; height: 140%; animation-delay: -1.5s; }
+
+.page-section {
+    transform: scale(0.95);
+    opacity: 0.8;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out, box-shadow 0.5s ease-out;
+    position: relative;
+}
+
+.page-section.section-active {
+    transform: scale(1);
+    opacity: 1;
+    z-index: 10;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.dark .page-section.section-active {
+    box-shadow: 0 25px 50px -12px rgba(255, 255, 255, 0.15);
+}

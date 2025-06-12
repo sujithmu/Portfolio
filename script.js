@@ -152,4 +152,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 5000);
         });
     });
+
+    const sectionPopupObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const activeSection = entry.target;
+
+                document.querySelectorAll('.page-section').forEach(section => {
+                    section.classList.remove('section-active');
+                });
+
+                activeSection.classList.add('section-active');
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    document.querySelectorAll('.page-section').forEach(section => {
+        sectionPopupObserver.observe(section);
+    });
 });
