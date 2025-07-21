@@ -172,4 +172,59 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.page-section').forEach(section => {
         sectionPopupObserver.observe(section);
     });
+
+    // ===== FULLSCREEN CV LOGIC =====
+    const cvContainer = document.getElementById('cv-container');
+    const fullscreenBtn = document.getElementById('fullscreen-cv-btn');
+    const maximizeIcon = document.getElementById('maximize-icon');
+    const minimizeIcon = document.getElementById('minimize-icon');
+
+    // Check if the elements exist on the page before adding listeners
+    if (cvContainer && fullscreenBtn) {
+        
+        // Function to enter fullscreen
+        const openFullscreen = (elem) => {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
+            }
+        };
+        
+        // Function to exit fullscreen
+        const closeFullscreen = () => {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) { /* Safari */
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) { /* IE11 */
+                document.msExitFullscreen();
+            }
+        };
+
+        // Click event for the button
+        fullscreenBtn.addEventListener('click', () => {
+            // If there's no element in fullscreen, request it. Otherwise, exit.
+            if (!document.fullscreenElement) {
+                openFullscreen(cvContainer);
+            } else {
+                closeFullscreen();
+            }
+        });
+
+        // Event listener to detect changes in fullscreen state (e.g., user pressing Esc)
+        document.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement) {
+                // We are in fullscreen mode
+                maximizeIcon.classList.add('hidden');
+                minimizeIcon.classList.remove('hidden');
+            } else {
+                // We have exited fullscreen mode
+                minimizeIcon.classList.add('hidden');
+                maximizeIcon.classList.remove('hidden');
+            }
+        });
+    }
 });
