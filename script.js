@@ -227,4 +227,62 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ===== CHATBOT LOGIC =====
+    const chatWindow = document.getElementById('chat-window');
+    const chatToggleBtn = document.getElementById('chat-toggle-btn');
+    const chatInput = document.getElementById('chat-input');
+    const chatSendBtn = document.getElementById('chat-send-btn');
+    const chatMessages = document.getElementById('chat-messages');
+
+    if (chatToggleBtn) {
+        chatToggleBtn.addEventListener('click', () => {
+            chatWindow.classList.toggle('hidden');
+        });
+
+        const sendMessage = async () => {
+            const message = chatInput.value.trim();
+            if (message === '') return;
+
+            const userMsgHtml = `<div class="flex justify-end mb-2"><span class="bg-blue-500 text-white text-sm px-3 py-2 rounded-lg">${message}</span></div>`;
+            chatMessages.innerHTML += userMsgHtml;
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            const typingIndicatorHtml = `<div id="typing-indicator" class="flex justify-start mb-2"><span class="bg-gray-200 dark:bg-gray-600 text-sm px-3 py-2 rounded-lg">Bot is typing...</span></div>`;
+            chatMessages.innerHTML += typingIndicatorHtml;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                // IMPORTANT: This relative URL works on Vercel
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message }),
+                });
+
+                const data = await response.json();
+                const botReply = data.reply || data.error || "Sorry, I had an issue.";
+
+                document.getElementById('typing-indicator').remove();
+                const botMsgHtml = `<div class="flex justify-start mb-2"><span class="bg-gray-200 dark:bg-gray-600 text-sm px-3 py-2 rounded-lg">${botReply}</span></div>`;
+                chatMessages.innerHTML += botMsgHtml;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            } catch (error) {
+                console.error("Chat error:", error);
+                document.getElementById('typing-indicator').remove();
+                const errorMsgHtml = `<div class="flex justify-start mb-2"><span class="bg-red-500 text-white text-sm px-3 py-2 rounded-lg">Error: Could not connect.</span></div>`;
+                chatMessages.innerHTML += errorMsgHtml;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        };
+
+        chatSendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    }
+    // ===== END OF CHATBOT LOGIC =====
+
 });

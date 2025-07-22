@@ -199,6 +199,31 @@
             </main>
         </div>
         <a href="#top" id="scrollToTopBtn" class="fixed bottom-6 right-6 z-50 bg-black text-white w-12 h-12 rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200" aria-label="Scroll to top"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg></a>
+        
+        <!-- ===== CHATBOT START ===== -->
+        <div id="chat-widget-container" class="fixed bottom-6 right-24 z-50 md:right-6">
+            <!-- Chat Window -->
+            <div id="chat-window" class="hidden absolute bottom-20 right-0 w-80 h-96 bg-white dark:bg-gray-800 rounded-lg shadow-xl flex flex-col mb-4">
+                <div class="p-4 bg-black text-white dark:bg-gray-700 rounded-t-lg">
+                    <h3 class="font-bold">Chat with Sujith's Assistant</h3>
+                </div>
+                <div id="chat-messages" class="flex-1 p-4 overflow-y-auto">
+                    <div class="mb-2 text-sm"><span class="font-bold bg-gray-200 dark:bg-gray-600 px-2 py-1 rounded">Bot:</span> Hi! Feel free to ask me anything about Sujith's skills, projects, or experience.</div>
+                </div>
+                <div class="p-2 border-t dark:border-gray-600">
+                    <div class="flex gap-2">
+                        <input type="text" id="chat-input" placeholder="e.g., What is his role?" class="flex-1 p-2 border rounded dark:bg-gray-700 dark:border-gray-500 text-sm">
+                        <button id="chat-send-btn" class="px-4 py-2 bg-black text-white dark:bg-white dark:text-black rounded font-bold">Send</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Chat Toggle Button -->
+            <button id="chat-toggle-btn" class="bg-black text-white dark:bg-white dark:text-black w-16 h-16 rounded-full flex items-center justify-center shadow-lg transform hover:scale-110 transition-transform duration-200" aria-label="Toggle chat">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+            </button>
+        </div>
+        <!-- ===== CHATBOT END ===== -->
+
         <div id="hover-image-container" class="fixed pointer-events-none opacity-0 transition-opacity duration-300 z-50 rounded-lg shadow-xl overflow-hidden transform -translate-x-1/2 -translate-y-1/2"><img id="hover-image" src="" alt="Project preview" class="w-64 h-auto"></div>
         <script src="script.js"></script>
     </body>

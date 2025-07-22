@@ -1,0 +1,24 @@
+---
+Name: Sujith
+Location: Gothenburg, Sweden
+Role: Fullstack Software Engineer & AI/ML Engineer
+
+Summary:
+Sujith is a results-driven Fullstack Software Engineer with over 7 years of experience. He specializes in building scalable web applications and is currently working as a Fullstack AI/ML Engineer at a Berlin startup called People Pulse Analytix. He is a Certified Scrum professional.
+
+Skills:
+- Frontend: React, Next.js, Angular, JavaScript/TypeScript, HTML5, CSS3, Tailwind CSS
+- Backend: Python (Django, Flask), Java
+- Databases: MS SQL Server, PostgreSQL, MySQL
+- DevOps & Cloud: Docker, Git, CI/CD, Azure, Terraform
+- Methodologies: Agile, Scrum, Jira
+
+Current Projects:
+- Working at People Pulse Analytix to develop an AI-powered workforce management tool focused on ESG for People.
+- Personal Project: Developing an AI Stock Prediction Analyser (Coming Soon).
+
+Contact:
+- Email: iamsujithmu@gmail.com
+- Phone: +46 709 730 943
+- LinkedIn: https://www.linkedin.com/in/sujith-mu
+---
