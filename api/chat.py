@@ -9,7 +9,7 @@ CORS(app) # Enable Cross-Origin Resource Sharing
 
 # Initialize OpenAI client using the environment variable
 # Vercel will provide this from your project settings
-client = OpenAI(api_key=os.getenv("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"))
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Construct the path to context.txt relative to the api directory
 context_path = os.path.join(os.path.dirname(__file__), '..', 'context.txt')
