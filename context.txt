@@ -1,14 +1,14 @@
 ---
 Name: Sujith
 Location: Gothenburg, Sweden
-Role: Fullstack Software Engineer & AI/ML Engineer
+Role: Fullstack Software Engineer & AI Engineer
 
 Summary:
 Sujith is a results-driven Fullstack Software Engineer with over 7 years of experience. He specializes in building scalable web applications and is currently working as a Fullstack AI/ML Engineer at a Berlin startup called People Pulse Analytix. He is a Certified Scrum professional.
 
 Skills:
-- Frontend: React, Next.js, Angular, JavaScript/TypeScript, HTML5, CSS3, Tailwind CSS
-- Backend: Python (Django, Flask), Java
+- Frontend: React, Next.js, Angular, Sencha Ext Js, JavaScript, TypeScript, HTML5, CSS3, Tailwind CSS, Material UI
+- Backend: Python (Django, Flask, FastAPI), Java
 - Databases: MS SQL Server, PostgreSQL, MySQL
 - DevOps & Cloud: Docker, Git, CI/CD, Azure, Terraform
 - Methodologies: Agile, Scrum, Jira
@@ -16,6 +16,18 @@ Skills:
 Current Projects:
 - Working at People Pulse Analytix to develop an AI-powered workforce management tool focused on ESG for People.
 - Personal Project: Developing an AI Stock Prediction Analyser (Coming Soon).
+
+Education:
+- System Developer Python with AI, Lexicon IT Proffs (Current)
+- Bachelor of Science in Computer Science, University of Example (2010 - 2014)
+
+Projects:
+- Job Search App - Developed using Next.js to search for jobs in Sweden. Link: https://purple-island-003ff5e10.6.azurestaticapps.net/
+- FPL Guru - An application that can help you in choosing players for your FPL (Premier League) team. Link: https://brave-bush-0589df31e.6.azurestaticapps.net/
+- Travel Itinerary Plus  - An AI powered (Gemini) Itinerary generator app. Link: https://zealous-hill-011decf1e.6.azurestaticapps.net/
+
+Hobbies and Interests:
+- Collaborating with startup's and working on new ideas, Travelling, Sports, History
 
 Contact:
 - Email: iamsujithmu@gmail.com

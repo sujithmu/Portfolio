@@ -206,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Click event for the button
         fullscreenBtn.addEventListener('click', () => {
-            // If there's no element in fullscreen, request it. Otherwise, exit.
             if (!document.fullscreenElement) {
                 openFullscreen(cvContainer);
             } else {
@@ -214,14 +213,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Event listener to detect changes in fullscreen state (e.g., user pressing Esc)
         document.addEventListener('fullscreenchange', () => {
             if (document.fullscreenElement) {
-                // We are in fullscreen mode
                 maximizeIcon.classList.add('hidden');
                 minimizeIcon.classList.remove('hidden');
             } else {
-                // We have exited fullscreen mode
                 minimizeIcon.classList.add('hidden');
                 maximizeIcon.classList.remove('hidden');
             }
@@ -231,48 +227,60 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===== CHATBOT LOGIC =====
     const chatWindow = document.getElementById('chat-window');
     const chatToggleBtn = document.getElementById('chat-toggle-btn');
+    const chatCloseBtn = document.getElementById('chat-close-btn');
     const chatInput = document.getElementById('chat-input');
     const chatSendBtn = document.getElementById('chat-send-btn');
     const chatMessages = document.getElementById('chat-messages');
 
-    if (chatToggleBtn) {
+    if (chatToggleBtn && chatWindow && chatCloseBtn) {
+        const openChat = () => chatWindow.classList.remove('hidden');
+        const closeChat = () => chatWindow.classList.add('hidden');
+
+        // Toggle and Close button events
         chatToggleBtn.addEventListener('click', () => {
             chatWindow.classList.toggle('hidden');
+            if (!chatWindow.classList.contains('hidden')) {
+                chatInput.focus();
+            }
         });
+        chatCloseBtn.addEventListener('click', closeChat);
 
         const sendMessage = async () => {
             const message = chatInput.value.trim();
             if (message === '') return;
 
-            const userMsgHtml = `<div class="flex justify-end mb-2"><span class="bg-blue-500 text-white text-sm px-3 py-2 rounded-lg">${message}</span></div>`;
+            const userMsgHtml = `<div class="flex justify-end"><span class="bg-blue-500 text-white text-sm px-3 py-2 rounded-lg max-w-xs">${message}</span></div>`;
             chatMessages.innerHTML += userMsgHtml;
             chatInput.value = '';
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            const typingIndicatorHtml = `<div id="typing-indicator" class="flex justify-start mb-2"><span class="bg-gray-200 dark:bg-gray-600 text-sm px-3 py-2 rounded-lg">Bot is typing...</span></div>`;
+            const typingIndicatorHtml = `<div id="typing-indicator" class="flex justify-start"><span class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-2 rounded-lg">Bot is typing...</span></div>`;
             chatMessages.innerHTML += typingIndicatorHtml;
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
             try {
-                // IMPORTANT: This relative URL works on Vercel
                 const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: message }),
+                    body: JSON.stringify({ message }),
                 });
 
+                if (!response.ok) {
+                    throw new Error(`Server responded with ${response.status}`);
+                }
+
                 const data = await response.json();
-                const botReply = data.reply || data.error || "Sorry, I had an issue.";
+                const botReply = data.reply || "Sorry, I couldn't understand that.";
 
                 document.getElementById('typing-indicator').remove();
-                const botMsgHtml = `<div class="flex justify-start mb-2"><span class="bg-gray-200 dark:bg-gray-600 text-sm px-3 py-2 rounded-lg">${botReply}</span></div>`;
+                const botMsgHtml = `<div class="flex justify-start"><span class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-2 rounded-lg max-w-xs">${botReply}</span></div>`;
                 chatMessages.innerHTML += botMsgHtml;
                 chatMessages.scrollTop = chatMessages.scrollHeight;
 
             } catch (error) {
                 console.error("Chat error:", error);
-                document.getElementById('typing-indicator').remove();
-                const errorMsgHtml = `<div class="flex justify-start mb-2"><span class="bg-red-500 text-white text-sm px-3 py-2 rounded-lg">Error: Could not connect.</span></div>`;
+                document.getElementById('typing-indicator')?.remove();
+                const errorMsgHtml = `<div class="flex justify-start"><span class="bg-red-500 text-white text-sm px-3 py-2 rounded-lg max-w-xs">Error: Could not connect.</span></div>`;
                 chatMessages.innerHTML += errorMsgHtml;
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }
@@ -283,6 +291,5 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Enter') sendMessage();
         });
     }
-    // ===== END OF CHATBOT LOGIC =====
 
 });
