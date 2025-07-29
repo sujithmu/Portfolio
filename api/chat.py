@@ -1,17 +1,17 @@
 import os
+import google.generativeai as genai
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from openai import OpenAI
 
 app = Flask(__name__)
 CORS(app)
 
-api_key = os.getenv("OPENAI_API_KEY")
-if not api_key:
-    print("ERROR: OPENAI_API_KEY environment variable not found.")
-    client = None
-else:
-    client = OpenAI(api_key=api_key)
+try:
+    genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+    model = genai.GenerativeModel('gemini-1.5-flash')
+except Exception as e:
+    print(f"ERROR: Failed to configure Gemini. Is GEMINI_API_KEY set? Error: {e}")
+    model = None
 
 personal_context = "Default context: Sujith is a software engineer. The main context file was not found."
 try:
@@ -24,34 +24,34 @@ except Exception as e:
 
 @app.route('/api/chat', methods=['POST'])
 def chat_handler():
-    if not client:
+    if not model:
         return jsonify({"error": "The AI assistant is not configured correctly (API key might be missing)."}), 500
 
     user_message = request.json.get('message')
     if not user_message:
         return jsonify({"error": "Message is required"}), 400
 
-    try:
-        completion = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {
-                    "role": "system",
-                    "content": f"""You are a helpful chatbot for Sujith's portfolio. Answer questions ONLY based on the context below. If the answer isn't in the context, say so politely.
+    prompt = f"""
+    You are a friendly and professional chatbot for Sujith's personal portfolio website. 
+    Your purpose is to answer questions about Sujith based ONLY on the context provided below. 
+    If a question is asked that cannot be answered from the context, politely state that you don't have that specific information.
+    Do not make up answers. Keep your responses concise and helpful.
 
-                    --- CONTEXT ---
-                    {personal_context}
-                    --- END CONTEXT ---
-                    """
-                },
-                {
-                    "role": "user",
-                    "content": user_message
-                }
-            ]
-        )
-        bot_response = completion.choices[0].message.content
+    --- CONTEXT ---
+    {personal_context}
+    --- END CONTEXT ---
+
+    USER'S QUESTION: "{user_message}"
+    """
+
+    try:
+        response = model.generate_content(prompt)
+        
+        bot_response = response.text
         return jsonify({"reply": bot_response})
+        
     except Exception as e:
-        print(f"An OpenAI API call error occurred: {e}")
-        return jsonify({"error": "There was an issue communicating with the OpenAI service."}), 500
+        print(f"An Google AI API call error occurred: {e}")
+        if 'prompt_feedback' in locals() and response.prompt_feedback.block_reason:
+             return jsonify({"error": "My safety filters blocked this request. Please try a different question."}), 400
+        return jsonify({"error": "There was an issue communicating with the Google AI service."}), 500
