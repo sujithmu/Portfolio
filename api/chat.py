@@ -8,7 +8,7 @@ CORS(app)
 
 try:
     genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-    model = genai.GenerativeModel('gemini-1.5-flash-latest')
+    model = genai.GenerativeModel('gemini-pro')
 except Exception as e:
     print(f"ERROR: Failed to configure Gemini. Is GEMINI_API_KEY set? Error: {e}")
     model = None
