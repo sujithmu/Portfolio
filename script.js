@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chatInput.value = '';
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            const typingIndicatorHtml = `<div id="typing-indicator" class="flex justify-start"><span class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-2 rounded-lg">Bot is typing...</span></div>`;
+            const typingIndicatorHtml = `<div id="typing-indicator" class="flex justify-start"><span class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-2 rounded-lg">Sujith is typing...</span></div>`;
             chatMessages.innerHTML += typingIndicatorHtml;
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
