@@ -232,16 +232,71 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chat-input');
     const chatSendBtn = document.getElementById('chat-send-btn');
     const chatMessages = document.getElementById('chat-messages');
+    const messageSound = document.getElementById('message-sound'); // Get the audio element
 
-    if (chatToggleBtn && chatWindow && chatCloseBtn) {
-        const openChat = () => chatWindow.classList.remove('hidden');
-        const closeChat = () => chatWindow.classList.add('hidden');
+    if (chatToggleBtn && chatWindow && chatCloseBtn && messageSound) {
+        
+        // Function to play sound safely
+        const playSound = () => {
+            messageSound.currentTime = 0; // Rewind to the start
+            messageSound.play().catch(error => console.log("Sound play was prevented by the browser."));
+        };
 
-        // Toggle and Close button events
+        // Function to type out a message
+        const typeMessage = (element, text) => {
+            let index = 0;
+            element.innerHTML = ''; // Clear the element
+            const intervalId = setInterval(() => {
+                if (index < text.length) {
+                    element.textContent += text.charAt(index);
+                    index++;
+                    chatMessages.scrollTop = chatMessages.scrollHeight; // Keep scrolled to bottom
+                } else {
+                    clearInterval(intervalId);
+                }
+            }, 30); // Typing speed in ms
+        };
+        
+        // Function to open the chat with animation
+        const openChat = () => {
+            chatWindow.classList.remove('hidden');
+            setTimeout(() => {
+                chatWindow.classList.remove('opacity-0', 'translate-y-4');
+            }, 10); // Small delay to allow CSS to apply transition
+            playSound();
+            chatInput.focus();
+        };
+
+        // Function to close the chat with animation
+        const closeChat = () => {
+            chatWindow.classList.add('opacity-0', 'translate-y-4');
+            setTimeout(() => {
+                chatWindow.classList.add('hidden');
+            }, 300); // Wait for transition to finish
+        };
+        
+        // Auto-open the chat on page load after a delay
+        setTimeout(() => {
+            openChat();
+            
+            // Add the initial bot message element and start typing
+            const initialMessageText = "Hi! Feel free to ask me anything about my skills, projects, or experience.";
+            const botMsgHtml = document.createElement('div');
+            botMsgHtml.className = 'flex justify-start';
+            botMsgHtml.innerHTML = `<span class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-2 rounded-lg max-w-xs"></span>`;
+            chatMessages.appendChild(botMsgHtml);
+            
+            const messageSpan = botMsgHtml.querySelector('span');
+            typeMessage(messageSpan, initialMessageText);
+
+        }, 2000); // 2-second delay after page load
+
+        // Event listeners
         chatToggleBtn.addEventListener('click', () => {
-            chatWindow.classList.toggle('hidden');
-            if (!chatWindow.classList.contains('hidden')) {
-                chatInput.focus();
+            if (chatWindow.classList.contains('hidden')) {
+                openChat();
+            } else {
+                closeChat();
             }
         });
         chatCloseBtn.addEventListener('click', closeChat);
@@ -255,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chatInput.value = '';
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            const typingIndicatorHtml = `<div id="typing-indicator" class="flex justify-start"><span class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-2 rounded-lg">Sujith is typing...</span></div>`;
+            const typingIndicatorHtml = `<div id="typing-indicator" class="flex justify-start"><span class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-2 rounded-lg">Bot is typing...</span></div>`;
             chatMessages.innerHTML += typingIndicatorHtml;
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
@@ -266,17 +321,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: JSON.stringify({ message }),
                 });
 
-                if (!response.ok) {
-                    throw new Error(`Server responded with ${response.status}`);
-                }
-
+                if (!response.ok) throw new Error(`Server responded with ${response.status}`);
+                
                 const data = await response.json();
                 const botReply = data.reply || "Sorry, I couldn't understand that.";
 
+                playSound(); // Play sound on new message
                 document.getElementById('typing-indicator').remove();
-                const botMsgHtml = `<div class="flex justify-start"><span class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-2 rounded-lg max-w-xs">${botReply}</span></div>`;
-                chatMessages.innerHTML += botMsgHtml;
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                const botMsgHtml = document.createElement('div');
+                botMsgHtml.className = 'flex justify-start';
+                botMsgHtml.innerHTML = `<span class="bg-gray-200 dark:bg-gray-700 text-sm px-3 py-2 rounded-lg max-w-xs"></span>`;
+                chatMessages.appendChild(botMsgHtml);
+
+                const messageSpan = botMsgHtml.querySelector('span');
+                typeMessage(messageSpan, botReply); // Type out the bot's response
 
             } catch (error) {
                 console.error("Chat error:", error);
@@ -288,9 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         chatSendBtn.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
+        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
     }
 
 });
