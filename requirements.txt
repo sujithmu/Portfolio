@@ -1,4 +1,5 @@
 Flask
-google-generativeai==0.7.1
+openai>=1.0.0
 Flask-Cors
+google-generativeai==0.7.1
 packaging
